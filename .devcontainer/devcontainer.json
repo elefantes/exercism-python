@@ -1,0 +1,101 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python 3",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	//"image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
+	
+	"build": {
+        // Path is relative to the devcontainer.json file.
+		"context": "..",
+        "dockerfile": "Dockerfile"
+    },
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		// "ghcr.io/devcontainers-contrib/features/black:2": {},
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+	},
+
+	"remoteEnv": {
+		// Pass in the host directory for Docker mount commands from inside the container
+		"HOST_PROJECT_PATH": "${localWorkspaceFolder}"
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "pip3 install --user -r requirements.txt",
+	"runArgs": [ "-v", "/var/run/docker.sock:/var/run/docker.sock"],
+	
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"almenon.arepl",
+				"AykutSarac.jsoncrack-vscode",
+				"charliermarsh.ruff",
+				"donjayamanne.python-environment-manager",
+				"dunstontc.dark-plus-syntax",
+				"eamodio.gitlens",
+				"KevinRose.vsc-python-indent",
+				"ms-azuretools.vscode-docker",
+				"ms-python.black-formatter",
+				"ms-python.isort",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-toolsai.jupyter",
+				"ms-toolsai.jupyter-keymap",
+				"ms-toolsai.jupyter-renderers",
+				"ms-toolsai.vscode-jupyter-cell-tags",
+				"ms-toolsai.vscode-jupyter-slideshow",
+				"ms-vscode-remote.remote-containers",
+				"ms-vscode-remote.remote-ssh",
+				"ms-vscode-remote.remote-ssh-edit",
+				"ms-vscode-remote.vscode-remote-extensionpack",
+				"ms-vscode.remote-explorer",
+				"ms-vscode.remote-server",
+				"njpwerner.autodocstring",
+				"redhat.vscode-yaml",
+				"tamasfe.even-better-toml",
+				"teabyii.ayu",
+				"tomoki1207.pdf",
+				"VisualStudioExptTeam.intellicode-api-usage-examples",
+				"VisualStudioExptTeam.vscodeintellicode"
+			],
+			"settings": {
+				"workbench.colorTheme": "Monokai Dimmed",
+				"terminal.integrated.cursorBlinking": true,
+				"gitlens.hovers.currentLine.over": "line",
+				"security.workspace.trust.untrustedFiles": "open",
+				"redhat.telemetry.enabled": false,
+				"workbench.startupEditor": "none",
+				"terminal.integrated.inheritEnv": false,
+				"update.showReleaseNotes": false,
+				"telemetry.telemetryLevel": "off",
+				"python.testing.pytestEnabled": true,
+				"python.testing.pytestArgs": [
+					"."
+				],
+				"editor.minimap.enabled": false,
+				"python.analysis.autoImportCompletions": true,
+				"python.analysis.fixAll": [
+					"source.unusedImports"
+				],
+				"editor.cursorStyle": "block",
+				"[jsonc]": {
+					"editor.defaultFormatter": "vscode.json-language-features"
+				},
+				"extensions.autoUpdate": "onlyEnabledExtensions",
+				"[python]": {
+					"editor.defaultFormatter": "ms-python.black-formatter",
+					"editor.formatOnSave": true
+				}
+			}
+
+		}
+	}
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
