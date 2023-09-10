@@ -26,8 +26,15 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip3 install --user -r requirements.txt",
-	"runArgs": [ "-v", "/var/run/docker.sock:/var/run/docker.sock"],
+	"postCreateCommand": {
+		"python": "pip3 install --user -r requirements.txt",
+		"exercism": "exercism configure --token=${EXERCISM_TOKEN} --workspace=/workspaces",
+		"git": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+	} ,
+	"runArgs": [ 
+		"-v", "/var/run/docker.sock:/var/run/docker.sock",
+		"--env-file",".config/secrets.env"
+	],
 	
 	// Configure tool-specific properties.
 	"customizations": {
