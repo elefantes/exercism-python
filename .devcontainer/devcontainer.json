@@ -3,34 +3,22 @@
 {
 	"name": "Python 3",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	//"image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
-	
 	"build": {
         // Path is relative to the devcontainer.json file.
 		"context": "..",
         "dockerfile": "Dockerfile"
     },
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		// "ghcr.io/devcontainers-contrib/features/black:2": {},
 		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
 	},
-
 	"remoteEnv": {
 		// Pass in the host directory for Docker mount commands from inside the container
 		"HOST_PROJECT_PATH": "${localWorkspaceFolder}"
 	},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": {
 		"python": "pip3 install --user -r requirements.txt",
 		"exercism": "exercism configure --token=${EXERCISM_TOKEN} --workspace=/workspaces"
 	} ,
-
 	"postAttachCommand": {
 		"git": "git config --global --add safe.directory ${containerWorkspaceFolder}"
 	},
@@ -38,8 +26,6 @@
 		"-v", "/var/run/docker.sock:/var/run/docker.sock",
 		"--env-file",".config/secrets.env"
 	],
-	
-	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -105,7 +91,6 @@
 			}
 
 		}
-	}
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	},
+	"remoteUser": "vscode"
 }
