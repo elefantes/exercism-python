@@ -1,0 +1,11 @@
+name: Pull Request
+on: [ push, pull_request, workflow_dispatch]
+jobs:
+  test-runner:
+    runs-on: self-hosted
+    steps:    
+      - name: echo
+        run: echo "Hello World!"
+      - name: output dir
+        run: ls -latrh; pwd
+
