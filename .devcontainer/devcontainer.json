@@ -13,8 +13,13 @@
 	},
 	"remoteEnv": {
 		// Pass in the host directory for Docker mount commands from inside the container
-		"HOST_PROJECT_PATH": "${localWorkspaceFolder}"
-	},
+		"HOST_PROJECT_PATH": "${localWorkspaceFolder}",
+		"__containerWorkspaceFolder":"${containerWorkspaceFolder}",
+		"__containerWorkspaceFolderBasename":"${containerWorkspaceFolderBasename}",
+		"__devcontainerId":"${devcontainerId}",
+		"__localWorkspaceFolder":"${localWorkspaceFolder}",
+		"__localWorkspaceFolderBasename":"${localWorkspaceFolderBasename}"
+	},	
 	"postCreateCommand": {
 		"python": "pip3 install --user -r requirements.txt",
 		"exercism": "exercism configure --token=${EXERCISM_TOKEN} --workspace=/workspaces"
@@ -61,6 +66,10 @@
 				"VisualStudioExptTeam.vscodeintellicode"
 			],
 			"settings": {
+				"remote.autoForwardPorts": false,
+				"remote.otherPortsAttributes": {
+					"onAutoForward": "ignore"
+				},
 				"workbench.colorTheme": "Monokai Dimmed",
 				"terminal.integrated.cursorBlinking": true,
 				"gitlens.hovers.currentLine.over": "line",
